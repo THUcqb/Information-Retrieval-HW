@@ -10,7 +10,10 @@
 \usepackage{algpseudocode}
 \usepackage{hyperref}
 \usepackage{xeCJK}
+    \setmainfont{Times New Roman}
     \setCJKmainfont{Songti SC}
+\usepackage{tabularx}
+\usepackage{listings}
 
 \usetikzlibrary{automata,positioning}
 
@@ -104,6 +107,7 @@
 }
 
 \author{\hmwkAuthorName}
+\advance\day by -3
 \date{\today}
 
 \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}

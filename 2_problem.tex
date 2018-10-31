@@ -1,87 +1,98 @@
 \begin{homeworkProblem}
 
-    在网上寻找任意类型的、与信息检索有关的任意可运行系统（针对text、image、video、audio等均可。商用系统及尚处于研究中的demo系统都可以。
-    我们鼓励大家尝试花样尽可能多的“搜索引擎”，查询query可以不限于文字，例如可以是一张图片），键入一定量的、能够说明问题的相关query，测试其功能，对结果给出某种形式的定量评估，并根据自己的理解作相应分析。
+    任意分别寻找一个针对英文的Stemmer和Lemmatizer, 任意选择风格不一致的两段文章片段，分别做stemming和lemmatization, 观察结果并做比较，进一步地，对其对信息检索可能造成的影响进行分析。 
     \\
 
-    \textbf{\large Report}
+    \textbf{\large 文本选取}
 
-    使用 Google Search 搜索 “优胜美地” 相关信息。
+    选取以下两段英文文本，其中 Text 1 选自 Harry Potter and the Sorcerer's Stone，Text 2 选自 Wikipedia 对 MacBook 的介绍。
     \\
 
-    \textbf{Part One}
+    \textbf{Text 1}
 
-    使用 \href{https://www.google.com}{Google 文本搜索}，输入关键词“优胜美地”。首页条目如下：
-    
-    \begin{enumerate}
-        \item 优胜美地『玩哪儿网』 | 美西旅行团全线7折起 | wannar.com‎
-        \item Yosemite National Park (U.S. National Park Service)
-        \item 優勝美地國家公園- 维基百科，自由的百科全书
-        \item Yosemite National Park | Lodging \& Year Round Activities ...
-        \item Yosemite National Park | Lodging, Camping, Attractions
-        \item 优胜美地国家公园景点 - 目的地 - 穷游
-        \item 优胜美地国家公园Yosemite national park - 目的地 - 穷游
-        \item 优胜美地国家公园 - 马蜂窝
-        \item 优胜美地国家公园 - 携程攻略
-        \item Images for 优胜美地
-        \item 聚焦：优胜美地国家公园| Visit California
-    \end{enumerate}
+    Harry had almost forgotten that the exam results were still to come, but come they did. To their great surprise, both he and Ron passed with good marks; Hermione, of course, had the best grades of the first years. Even Neville scraped through, his good Herbology mark making up for his abysmal Potions one. They had hoped that Goyle, who was almost as stupid as he was mean, might be thrown out, but he had passed, too. It was a shame, but as Ron said, you couldn’t have everything in life.
 
-    在首页显示的 11 个条目中，第1条显示为“Ad”为广告条目。其余10条中：
+    And suddenly, their wardrobes were empty, their trunks were packed, Neville’s toad was found lurking in a corner of the toilets; notes were handed out to all students, warning them not to use magic over the holidays (“I always hope they’ll forget to give us these,” said Fred Weasley sadly); Hagrid was there to take them down to the fleet of boats that sailed across the lake; they were boarding the Hogwarts Express; talking and laughing as the countryside became greener and tidier; eating Bertie Bott’s Every Flavor Beans as they sped past Muggle towns; pulling off their wizard robes and putting on jackets and coats; pulling into platform nine and three-quarters at King’s Cross station.
+    \\
 
-    \begin{enumerate}
-        \item 第2、4、5、11条为优胜美地官方中英文景点介绍页面
-        \item 第3条为维基百科页面
-        \item 第6、7、8、9条为国内主流的旅游网站
-        \item 第10条为图片搜索
-    \end{enumerate}
+    \textbf{Text 2}
 
-    以上结果表明该任务的文本搜索基本能满足了解一个地点、准备旅游攻略这两个用户要求。
+    The MacBook is a brand of notebook computers manufactured by Apple Inc. from May 2006 to February 2012, and relaunched in 2015. It replaced the iBook series and 12-inch PowerBook series of notebooks as a part of the Apple-Intel transition from PowerPC. Positioned as the low end of the MacBook family, below the premium ultra-portable MacBook Air and the powerful MacBook Pro,[1] the MacBook was aimed at the consumer and education markets.[2] It was the best-selling Macintosh ever. For five months in 2008, it was the best-selling laptop of any brand in US retail stores.[3] Collectively, the MacBook brand is the "world's top-selling line of premium laptops."[4]
+
+    There have been four separate designs of the MacBook. The original model used a combination of polycarbonate and fiberglass casing which was modeled after the iBook G4. The second type was introduced in October 2008 alongside the 15-inch MacBook Pro; the MacBook shared the more expensive laptop's unibody aluminium casing, but omitted FireWire. A third design, introduced in late 2009, had a polycarbonate unibody casing.
+    \\
+
+    \textbf{\large Analysis}
+
+    stemming和lemmatization在结果上各有好坏，分别会影响检索的 accuracy 和 recall。
+    \\
+
+    \textbf{Stemming}
+
+    stemming 相对来说较为简单。它根据规则将一个词变化成对应的词根，不考虑上下文信息和词性，一般会降低accuracy。
+    而如果对用户的查询也做stemming，一定可以在语料库中找到对应词，所以这种方法的 recall 值较高。
+    \\
+
+    \textbf{Lemmatization}
+
+    lemmatization 根据词在句中的词性进行还原，需要词性标注算法对文中的词进行预处理。
+    lemmatization 更多地保留了原文中的语义信息，因此可以提高 accuracy，但对于一些符合条件的查询，有可能因为用户输入的查询词词性不同而损失结果，因此这种方法 recall 值较低。
     \\
 
     \pagebreak
 
-    \textbf{Part Two}
+    \textbf{\large Results}
 
-    使用 \href{https://images.google.com}{Google 图片搜索}，给定图片如下：
-
-    \begin{figure}[!h]
+    \begin{table}[!h]
+    \caption{Stemming and Lemmatization Results}
         \centering
-        \includegraphics[width=0.8\textwidth]{images/yosemite.jpg}
-        \caption{优胜美地图片（同时是 macOS 10.10 的壁纸）}
-    \end{figure}
-
-    结果如下：
-
-    \begin{enumerate}
-        \item Refurbished 12-inch MacBook 1.1GHz Dual-core Intel Core M - Silver ...
-        \item Amazon.com : Apple Macbook 12" Laptop w/ Retina Display - (256GB ...
-        \item Here are all of OS X Yosemite's beautiful new wallpapers | 9to5Mac
-        \item 20 Beautiful Apple macOS 5K Wallpapers And HD Backgrounds
-        \item Passport Summer Camp - Tampa Metropolitan Area YMCA
-        \item Yosemite, 5k wallpapers, forest, OSX, apple, mountains | km's nice ...
-        \item Free wallpaper | Wallpaper | Pinterest | Wallpaper, Mac os wallpaper ...
-    \end{enumerate}
-
-    由于该图片是 macOS 10.10 的壁纸，发现搜索结果均为 mac, apple, wallpaper 等关键词，没有与优胜美地景点相关的项。
+        \begin{tabularx}{\textwidth}{|c|X|X|}
+            \hline
+            & Stemming & Lemmatization \\
+            \hline
+            Harry Potter & 
+            harri almost forgotten exam result still come come To great surpris ron pass good mark hermion cours best grade first year even nevil scrape good herbolog mark make abysm potion one they hope goyl almost stupid mean might thrown pass It shame ron said ’ everyth life and suddenli wardrob empti trunk pack nevil ’ toad found lurk corner toilet note hand student warn use magic holiday “ I alway hope ’ forget give us ” said fred weasley sadli hagrid take fleet boat sail across lake board hogwart express talk laugh countrysid becam greener tidier eat berti bott ’ everi flavor bean sped past muggl town pull wizard robe put jacket coat pull platform nine three-quart king ’ cross station &
+            harry almost forget exam result still come come to great surprise ron pass good mark hermione course best grade first year even neville scrap good herbology mark make abysmal potion one they hop goyle almost stupid mean might throw pass it shame ron say ’ everything life and suddenly wardrobes empty trunk pack neville ’ toad find lurk corner toilet note hand student warn use magic holiday “ i always hope ’ forget give u ” say fred weasley sadly hagrid take fleet boat sail across lake boarding hogwarts express talk laugh countryside become greener tidy eat bertie bott ’ every flavor bean speed past muggle town pull wizard robe put jacket coat pull platform nine three-quarters king ’ cross station \\
+            \hline
+            Macbook Wiki &
+            the macbook brand notebook comput manufactur appl inc. may 2006 februari 2012 relaunch 2015 It replac ibook seri 12-inch powerbook seri notebook part apple-intel transit powerpc posit low end macbook famili premium ultra-port macbook air power macbook pro 1 macbook aim consum educ market 2 It best-sel macintosh ever for five month 2008 best-sel laptop brand US retail store 3 collect macbook brand  world 's top-sel line premium laptop 4 there four separ design macbook the origin model use combin polycarbon fiberglass case model ibook G4 the second type introduc octob 2008 alongsid 15-inch macbook pro macbook share expens laptop 's unibodi aluminium case omit firewir A third design introduc late 2009 polycarbon unibodi case &
+            the macbook brand notebook computer manufacture apple inc. may 2006 february 2012 relaunched 2015 it replace ibook series 12-inch powerbook series notebook part apple-intel transition powerpc position low end macbook family premium ultra-portable macbook air powerful macbook pro 1 macbook aim consumer education market 2 it best-selling macintosh ever for five month 2008 best-selling laptop brand u retail store 3 collectively macbook brand world 's top-selling line premium laptops 4 there four separate design macbook the original model use combination polycarbonate fiberglass case model ibook g4 the second type introduce october 2008 alongside 15-inch macbook pro macbook share expensive laptop 's unibody aluminium case omit firewire a third design introduce late 2009 polycarbonate unibody case \\
+            \hline
+        \end{tabularx}
+    \end{table}
 
     \pagebreak
 
-    \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.8\textwidth]{images/DSC00129.jpg}
-        \caption{优胜美地实拍照片}
-    \end{figure}
+    \textbf{\large Code}
 
-    结果如下：
+    \begin{lstlisting}[language=python]
+def stemming(text, fname):
+    stemmer = PorterStemmer()
+    with open(f"result/{fname}", "w") as f:
+        f.write(" ".join([stemmer.stem(word) for word in text]))
 
-    \begin{enumerate}
-        \item Glacier Point - Yosemite National Park (U.S. National Park Service)
-        \item Glacier Point Yosemite | Discover Yosemite Glacier Point
-        \item Visually similar images
-    \end{enumerate}
 
-    与上一个输入不同，此照片为优胜美地的实拍照片，可以看到总共仅有3个结果，均为优胜美地官网的介绍，表明该景点名为 Glacier Point，包含进一步的介绍。在第三项 Visually similar images 中可以看到类似的关于该处的图片。
+def get_wordnet_pos(treebank_tag):
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return wordnet.NOUN
+
+
+def lemmatization(text, fname):
+    lemmatizer = WordNetLemmatizer()
+    results = []
+    with open(f"result/{fname}", "w") as f:
+        for word, tag in pos_tag(text):
+            results.append(lemmatizer.lemmatize(word.lower(), get_wordnet_pos(tag)))
+        f.write(" ".join(result))
+    \end{lstlisting}
 
 \end{homeworkProblem}
 
