@@ -20,4 +20,5 @@
 target/
 index/
 CNKI_journal_v2.txt
+*.html
 

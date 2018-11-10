@@ -16,7 +16,7 @@ public class LuceneQuery {
     private static Analyzer analyzer = new StandardAnalyzer();
 
     public List<Document> search(String str) {
-        System.out.println(str);
+        // System.out.println(str);
 
         List<Document> doc_list = new ArrayList<Document>();
 
@@ -32,7 +32,7 @@ public class LuceneQuery {
             ScoreDoc[] score_docs = top_docs.scoreDocs;
             for (ScoreDoc doc : score_docs) {
                 Document d = searcher.doc(doc.doc);
-                System.out.println(d.get("题名") + doc.score);
+                // System.out.println(d.get("题名") + doc.score);
                 doc_list.add(d);
             }
 
